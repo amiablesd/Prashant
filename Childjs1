@@ -1,0 +1,50 @@
+import { LightningElement, api, track } from 'lwc';
+
+export default class OnboardingForm extends LightningElement {
+    @api currentStep;  // Receives current step from parent
+    @api onboardingData;  // Receives the onboarding data
+
+    @track formData = {};
+
+    connectedCallback() {
+        // Pre-populate the form with the existing data for the current stage
+        if (this.currentStep === 1) {
+            this.formData = this.onboardingData.customerInfo;
+        } else if (this.currentStep === 2) {
+            this.formData = this.onboardingData.verification;
+        } else if (this.currentStep === 3) {
+            this.formData = this.onboardingData.financials;
+        } else if (this.currentStep === 4) {
+            this.formData = this.onboardingData.infrastructure;
+        }
+    }
+
+    handleInputChange(event) {
+        // Capture input field changes
+        const field = event.target.name;
+        this.formData[field] = event.target.value;
+
+        // Simple form validation (e.g., if all fields are filled, enable Next button)
+        this.validateForm();
+    }
+
+    validateForm() {
+        const allFieldsFilled = Object.values(this.formData).every(value => value);
+        const nextButton = this.template.querySelector('.next-button');
+        nextButton.disabled = !allFieldsFilled;
+    }
+
+    // Trigger custom event for Next button click
+    handleNext() {
+        const nextEvent = new CustomEvent('next', {
+            detail: this.formData
+        });
+        this.dispatchEvent(nextEvent);
+    }
+
+    // Trigger custom event for Previous button click
+    handlePrevious() {
+        const previousEvent = new CustomEvent('previous');
+        this.dispatchEvent(previousEvent);
+    }
+}
