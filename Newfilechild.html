@@ -1,0 +1,28 @@
+<template>
+    <template if:true={isStageOne}>
+        <!-- Stage 1: Customer Info -->
+        <lightning-input label="Customer Name" value={customerName} onchange={handleInput}></lightning-input>
+        <lightning-input label="Phone Number" value={phoneNumber} onchange={handleInput}></lightning-input>
+        <lightning-input label="Email" value={email} onchange={handleInput}></lightning-input>
+        <lightning-input label="Address" value={address} onchange={handleInput}></lightning-input>
+    </template>
+
+    <template if:true={isStageTwo}>
+        <!-- Stage 2: Verification -->
+        <lightning-input label="PAN" value={pan} onchange={handleInput}></lightning-input>
+        <lightning-input label="GST" value={gst} onchange={handleInput}></lightning-input>
+    </template>
+
+    <template if:true={isStageThree}>
+        <!-- Stage 3: Financials -->
+        <lightning-input label="Sales Turnover" value={salesTurnover} onchange={handleInput}></lightning-input>
+        <lightning-input label="Gross Profit" value={grossProfit} onchange={handleInput}></lightning-input>
+        <lightning-input label="Net Profit" value={netProfit} onchange={handleInput}></lightning-input>
+    </template>
+
+    <template if:true={isStageFour}>
+        <!-- Stage 4: Infrastructure -->
+        <lightning-input label="Location" value={location} onchange={handleInput}></lightning-input>
+        <lightning-input label="Space Adequacy" value={spaceAdequacy} onchange={handleInput}></lightning-input>
+    </template>
+</template>
