@@ -1,0 +1,26 @@
+import { LightningElement, api } from 'lwc';
+
+export default class ChildLwc extends LightningElement {
+    @api currentStep;
+    @api formData;
+
+    // Dispatch event to notify parent of button click
+    handleNext() {
+        this.dispatchEvent(new CustomEvent('next'));
+    }
+
+    handlePrevious() {
+        this.dispatchEvent(new CustomEvent('previous'));
+    }
+
+    handleSubmit() {
+        this.dispatchEvent(new CustomEvent('submit'));
+    }
+
+    // Dispatch data change event to parent
+    handleChange(event) {
+        this.dispatchEvent(new CustomEvent('datachange', { 
+            detail: { field: event.target.name, value: event.target.value }
+        }));
+    }
+}
