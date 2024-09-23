@@ -1,0 +1,57 @@
+<template>
+    <lightning-button label="Open Modal" onclick={openModal}></lightning-button>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <!-- Modal/Popup Header -->
+                <header class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close" alternative-text="close" onclick={closeModal} class="slds-modal__close"></lightning-button-icon>
+                    <h2 class="slds-text-heading_medium">Onboarding Process</h2>
+                </header>
+
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <!-- Child component for different stages (pass current step) -->
+                    <c-onboarding-form current-step={currentStep} 
+                                       onboarding-data={onboardingData}
+                                       onnext={handleNext}
+                                       onprevious={handlePrevious}>
+                    </c-onboarding-form>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="slds-progress slds-m-bottom_medium">
+                    <ol class="slds-progress__list">
+                        <li class="slds-progress__item progress-step slds-is-active">
+                            <span class="slds-progress__marker"></span>
+                            <div class="slds-progress__item_content">
+                                <h3 class="slds-progress__label">Customer Info</h3>
+                            </div>
+                        </li>
+                        <li class="slds-progress__item progress-step">
+                            <span class="slds-progress__marker"></span>
+                            <div class="slds-progress__item_content">
+                                <h3 class="slds-progress__label">Verification</h3>
+                            </div>
+                        </li>
+                        <li class="slds-progress__item progress-step">
+                            <span class="slds-progress__marker"></span>
+                            <div class="slds-progress__item_content">
+                                <h3 class="slds-progress__label">Financials</h3>
+                            </div>
+                        </li>
+                        <li class="slds-progress__item progress-step">
+                            <span class="slds-progress__marker"></span>
+                            <div class="slds-progress__item_content">
+                                <h3 class="slds-progress__label">Infrastructure</h3>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
