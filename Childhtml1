@@ -1,0 +1,37 @@
+<template>
+    <div class="form-content">
+        <template if:true={currentStep === 1}>
+            <lightning-input label="Name" name="name" value={formData.name} onchange={handleInputChange}></lightning-input>
+            <lightning-input label="Email" name="email" value={formData.email} onchange={handleInputChange}></lightning-input>
+        </template>
+
+        <template if:true={currentStep === 2}>
+            <lightning-input label="Verification ID" name="verificationId" value={formData.verificationId} onchange={handleInputChange}></lightning-input>
+        </template>
+
+        <template if:true={currentStep === 3}>
+            <lightning-input label="Annual Revenue" name="annualRevenue" value={formData.annualRevenue} onchange={handleInputChange}></lightning-input>
+        </template>
+
+        <template if:true={currentStep === 4}>
+            <lightning-input label="Infrastructure Type" name="infrastructureType" value={formData.infrastructureType} onchange={handleInputChange}></lightning-input>
+        </template>
+    </div>
+
+    <div class="form-buttons">
+        <!-- Previous button should not appear in Stage 1 -->
+        <template if:false={currentStep === 1}>
+            <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        </template>
+
+        <!-- Next button -->
+        <template if:false={currentStep === 4}>
+            <lightning-button label="Next" class="next-button" onclick={handleNext} disabled></lightning-button>
+        </template>
+
+        <!-- Submit button in the last stage -->
+        <template if:true={currentStep === 4}>
+            <lightning-button label="Submit" onclick={handleNext}></lightning-button>
+        </template>
+    </div>
+</template>
