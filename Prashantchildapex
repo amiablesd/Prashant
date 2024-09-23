@@ -1,0 +1,21 @@
+public class OnboardingWrapper {
+    @AuraEnabled public String customerName { get; set; }
+    @AuraEnabled public String phoneNumber { get; set; }
+    @AuraEnabled public String email { get; set; }
+    @AuraEnabled public String address { get; set; }
+
+    @AuraEnabled public String pan { get; set; }
+    @AuraEnabled public String gst { get; set; }
+
+    @AuraEnabled public Decimal salesTurnover { get; set; }
+    @AuraEnabled public Decimal grossProfit { get; set; }
+    @AuraEnabled public Decimal netProfit { get; set; }
+    @AuraEnabled public Decimal debt { get; set; }
+
+    @AuraEnabled public String location { get; set; }
+    @AuraEnabled public Boolean spaceAdequacy { get; set; }
+
+    public OnboardingWrapper() {
+        // Initialize variables if needed
+    }
+}
