@@ -1,0 +1,134 @@
+<template>
+    <!-- Stage 1: Customer Information -->
+    <template if:true={isStage1}>
+        <div class="slds-form__row">
+            <!-- Customer Name -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="customerName">Customer Name</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="customerName" class="slds-input" value={customerName} onchange={handleInputChange} />
+                </div>
+            </div>
+            <!-- Phone Number -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="phoneNumber">Phone Number</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="phoneNumber" class="slds-input" value={phoneNumber} onchange={handleInputChange} />
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <!-- Address -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="address">Address</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="address" class="slds-input" value={address} onchange={handleInputChange} />
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="email">Email</label>
+                <div class="slds-form-element__control">
+                    <input type="email" id="email" class="slds-input" value={email} onchange={handleInputChange} />
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <button class="slds-button slds-button_neutral" onclick={handleNext}>Next</button>
+        </div>
+    </template>
+
+    <!-- Stage 2: Customer Verification -->
+    <template if:true={isStage2}>
+        <div class="slds-form__row">
+            <!-- PAN -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="pan">PAN</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="pan" class="slds-input" value={pan} onchange={handleInputChange} />
+                </div>
+            </div>
+            <!-- GST -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="gst">GST</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="gst" class="slds-input" value={gst} onchange={handleInputChange} />
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <button class="slds-button slds-button_neutral" onclick={handlePrevious}>Previous</button>
+            <button class="slds-button slds-button_neutral" onclick={handleNext}>Next</button>
+        </div>
+    </template>
+
+    <!-- Stage 3: Financial Health -->
+    <template if:true={isStage3}>
+        <div class="slds-form__row">
+            <!-- Sales Turn Over -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="salesTurnOver">Sales Turn Over</label>
+                <div class="slds-form-element__control">
+                    <input type="number" id="salesTurnOver" class="slds-input" value={salesTurnOver} onchange={handleInputChange} />
+                </div>
+            </div>
+            <!-- Gross Profit -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="grossProfit">Gross Profit</label>
+                <div class="slds-form-element__control">
+                    <input type="number" id="grossProfit" class="slds-input" value={grossProfit} onchange={handleInputChange} />
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <!-- Net Profit -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="netProfit">Net Profit</label>
+                <div class="slds-form-element__control">
+                    <input type="number" id="netProfit" class="slds-input" value={netProfit} onchange={handleInputChange} />
+                </div>
+            </div>
+            <!-- Debt -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="debt">Debt</label>
+                <div class="slds-form-element__control">
+                    <input type="number" id="debt" class="slds-input" value={debt} onchange={handleInputChange} />
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <button class="slds-button slds-button_neutral" onclick={handlePrevious}>Previous</button>
+            <button class="slds-button slds-button_neutral" onclick={handleNext}>Next</button>
+        </div>
+    </template>
+
+    <!-- Stage 4: Infrastructure -->
+    <template if:true={isStage4}>
+        <div class="slds-form__row">
+            <!-- Location -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="location">Location</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="location" class="slds-input" value={location} onchange={handleInputChange} />
+                </div>
+            </div>
+            <!-- Space Adequacy -->
+            <div class="slds-form-element slds-size_1-of-2">
+                <label class="slds-form-element__label" for="spaceAdequacy">Space Adequacy</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="spaceAdequacy" class="slds-input" value={spaceAdequacy} onchange={handleInputChange} />
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <button class="slds-button slds-button_neutral" onclick={handlePrevious}>Previous</button>
+            <button class="slds-button slds-button_brand" onclick={handleSubmit}>Submit</button>
+        </div>
+    </template>
+</template>
