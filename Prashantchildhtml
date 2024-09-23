@@ -1,0 +1,29 @@
+<template>
+    <template if:true={currentStep === 1}>
+        <lightning-input label="Customer Name" name="customerName" value={formData.customerName} onchange={handleChange}></lightning-input>
+        <lightning-input label="Phone Number" name="phoneNumber" value={formData.phoneNumber} onchange={handleChange}></lightning-input>
+        <lightning-input label="Email" name="email" value={formData.email} onchange={handleChange}></lightning-input>
+        <lightning-input label="Address" name="address" value={formData.address} onchange={handleChange}></lightning-input>
+        <lightning-button label="Next" onclick={handleNext}></lightning-button>
+    </template>
+    <template if:true={currentStep === 2}>
+        <lightning-input label="PAN" name="pan" value={formData.pan} onchange={handleChange}></lightning-input>
+        <lightning-input label="GST" name="gst" value={formData.gst} onchange={handleChange}></lightning-input>
+        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        <lightning-button label="Next" onclick={handleNext}></lightning-button>
+    </template>
+    <template if:true={currentStep === 3}>
+        <lightning-input label="Sales Turnover" name="salesTurnover" value={formData.salesTurnover} onchange={handleChange}></lightning-input>
+        <lightning-input label="Gross Profit" name="grossProfit" value={formData.grossProfit} onchange={handleChange}></lightning-input>
+        <lightning-input label="Net Profit" name="netProfit" value={formData.netProfit} onchange={handleChange}></lightning-input>
+        <lightning-input label="Debt" name="debt" value={formData.debt} onchange={handleChange}></lightning-input>
+        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        <lightning-button label="Next" onclick={handleNext}></lightning-button>
+    </template>
+    <template if:true={currentStep === 4}>
+        <lightning-input label="Location" name="location" value={formData.location} onchange={handleChange}></lightning-input>
+        <lightning-input label="Space Adequacy" name="spaceAdequacy" value={formData.spaceAdequacy} onchange={handleChange}></lightning-input>
+        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        <lightning-button label="Submit" onclick={handleSubmit}></lightning-button>
+    </template>
+</template>
