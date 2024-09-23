@@ -1,29 +1,43 @@
 <template>
-    <template if:true={currentStep === 1}>
-        <lightning-input label="Customer Name" name="customerName" value={formData.customerName} onchange={handleChange}></lightning-input>
-        <lightning-input label="Phone Number" name="phoneNumber" value={formData.phoneNumber} onchange={handleChange}></lightning-input>
-        <lightning-input label="Email" name="email" value={formData.email} onchange={handleChange}></lightning-input>
-        <lightning-input label="Address" name="address" value={formData.address} onchange={handleChange}></lightning-input>
-        <lightning-button label="Next" onclick={handleNext}></lightning-button>
-    </template>
-    <template if:true={currentStep === 2}>
-        <lightning-input label="PAN" name="pan" value={formData.pan} onchange={handleChange}></lightning-input>
-        <lightning-input label="GST" name="gst" value={formData.gst} onchange={handleChange}></lightning-input>
-        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
-        <lightning-button label="Next" onclick={handleNext}></lightning-button>
-    </template>
-    <template if:true={currentStep === 3}>
-        <lightning-input label="Sales Turnover" name="salesTurnover" value={formData.salesTurnover} onchange={handleChange}></lightning-input>
-        <lightning-input label="Gross Profit" name="grossProfit" value={formData.grossProfit} onchange={handleChange}></lightning-input>
-        <lightning-input label="Net Profit" name="netProfit" value={formData.netProfit} onchange={handleChange}></lightning-input>
-        <lightning-input label="Debt" name="debt" value={formData.debt} onchange={handleChange}></lightning-input>
-        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
-        <lightning-button label="Next" onclick={handleNext}></lightning-button>
-    </template>
-    <template if:true={currentStep === 4}>
-        <lightning-input label="Location" name="location" value={formData.location} onchange={handleChange}></lightning-input>
-        <lightning-input label="Space Adequacy" name="spaceAdequacy" value={formData.spaceAdequacy} onchange={handleChange}></lightning-input>
-        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
-        <lightning-button label="Submit" onclick={handleSubmit}></lightning-button>
-    </template>
+    <div class="slds-modal__container">
+        <header class="slds-modal__header">
+            <h2 class="slds-text-heading_medium">Onboarding Process</h2>
+        </header>
+
+        <div class="slds-modal__content slds-p-around_medium">
+            <!-- Step 1: Customer Details -->
+            <template if:true={isStep1}>
+                <lightning-input label="Customer Name" name="customerName" value={formData.customerName} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="Phone Number" name="phoneNumber" value={formData.phoneNumber} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="Email" name="email" value={formData.email} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="Address" name="address" value={formData.address} onchange={handleInputChange}></lightning-input>
+            </template>
+
+            <!-- Step 2: Customer Verification -->
+            <template if:true={isStep2}>
+                <lightning-input label="PAN" name="pan" value={formData.pan} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="GST" name="gst" value={formData.gst} onchange={handleInputChange}></lightning-input>
+            </template>
+
+            <!-- Step 3: Financial Health -->
+            <template if:true={isStep3}>
+                <lightning-input label="Sales Turnover" name="salesTurnover" type="number" value={formData.salesTurnover} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="Gross Profit" name="grossProfit" type="number" value={formData.grossProfit} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="Net Profit" name="netProfit" type="number" value={formData.netProfit} onchange={handleInputChange}></lightning-input>
+                <lightning-input label="Debt" name="debt" type="number" value={formData.debt} onchange={handleInputChange}></lightning-input>
+            </template>
+
+            <!-- Step 4: Infrastructure -->
+            <template if:true={isStep4}>
+                <lightning-input label="Location" name="location" value={formData.location} onchange={handleInputChange}></lightning-input>
+                <lightning-checkbox-group label="Space Adequacy" options={spaceAdequacyOptions} value={formData.spaceAdequacy} onchange={handleInputChange}></lightning-checkbox-group>
+            </template>
+        </div>
+
+        <!-- Modal Footer with Previous and Next/Submit Buttons -->
+        <footer class="slds-modal__footer">
+            <lightning-button variant="neutral" label="Previous" onclick={handlePrevious} class={previousButtonClass}></lightning-button>
+            <lightning-button variant="brand" label={nextButtonLabel} onclick={handleNext}></lightning-button>
+        </footer>
+    </div>
 </template>
