@@ -1,0 +1,67 @@
+import { LightningElement, track } from 'lwc';
+
+export default class OnboardingForm extends LightningElement {
+    // Stage tracking
+    @track isStage1 = true;
+    @track isStage2 = false;
+    @track isStage3 = false;
+    @track isStage4 = false;
+
+    // Wrapper to store form data
+    @track formData = {
+        customerName: '',
+        phoneNumber: '',
+        address: '',
+        email: '',
+        pan: '',
+        gst: '',
+        salesTurnOver: '',
+        grossProfit: '',
+        netProfit: '',
+        debt: '',
+        location: '',
+        spaceAdequacy: ''
+    };
+
+    // Handle input changes for all fields
+    handleInputChange(event) {
+        const field = event.target.id;
+        this.formData[field] = event.target.value;
+    }
+
+    // Navigate to the next stage
+    handleNext() {
+        if (this.isStage1) {
+            this.isStage1 = false;
+            this.isStage2 = true;
+        } else if (this.isStage2) {
+            this.isStage2 = false;
+            this.isStage3 = true;
+        } else if (this.isStage3) {
+            this.isStage3 = false;
+            this.isStage4 = true;
+        }
+    }
+
+    // Navigate to the previous stage
+    handlePrevious() {
+        if (this.isStage2) {
+            this.isStage2 = false;
+            this.isStage1 = true;
+        } else if (this.isStage3) {
+            this.isStage3 = false;
+            this.isStage2 = true;
+        } else if (this.isStage4) {
+            this.isStage4 = false;
+            this.isStage3 = true;
+        }
+    }
+
+    // Handle form submission
+    handleSubmit() {
+        // For now, just log the form data
+        console.log('Submitted form data: ', JSON.stringify(this.formData));
+        // You can trigger any further logic here
+        // Since no DML operation is required, we avoid saving anything in the database.
+    }
+}
