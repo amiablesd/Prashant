@@ -1,0 +1,47 @@
+<template>
+    <lightning-button label="Open Onboarding" onclick={openModal}></lightning-button>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading" aria-modal="true"
+                 class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <!-- Modal/Popup Header -->
+                <header class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close"
+                                           alternative-text="Close"
+                                           onclick={closeModal}
+                                           class="slds-modal__close"></lightning-button-icon>
+                    <h2 class="slds-text-heading_medium">Onboarding Process</h2>
+                </header>
+
+                <!-- Modal/Popup Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c-onboarding-form
+                        current-stage={currentStage}
+                        total-stages={totalStages}
+                        onnext={handleNext}
+                        onprevious={handlePrevious}
+                        onsubmit={handleSubmit}>
+                    </c-onboarding-form>
+                </div>
+
+                <!-- Modal/Popup Footer (Progress Indicator) -->
+                <footer class="slds-modal__footer">
+                    <lightning-progress-indicator
+                        current-step={currentStage}
+                        variant="base">
+                        <template for:each={stages} for:item="stage">
+                            <lightning-progress-step
+                                key={stage}
+                                label={stage}></lightning-progress-step>
+                        </template>
+                    </lightning-progress-indicator>
+                </footer>
+            </div>
+        </section>
+
+        <!-- Backdrop for Modal -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
