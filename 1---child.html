@@ -1,0 +1,33 @@
+<template>
+    <lightning-record-edit-form>
+        <lightning-input label="Customer Name" value={customerName}></lightning-input>
+        <lightning-input label="Phone Number" value={phoneNumber}></lightning-input>
+        <lightning-input label="Email" value={email}></lightning-input>
+        <lightning-input label="Address" value={address}></lightning-input>
+
+        <template if:true={isStage2}>
+            <lightning-input label="PAN" value={pan}></lightning-input>
+            <lightning-input label="GST" value={gst}></lightning-input>
+        </template>
+
+        <template if:true={isStage3}>
+            <lightning-input label="Sales Turnover" value={salesTurnOver}></lightning-input>
+            <lightning-input label="Gross Profit" value={grossProfit}></lightning-input>
+            <lightning-input label="Net Profit" value={netProfit}></lightning-input>
+            <lightning-input label="Debt" value={debt}></lightning-input>
+        </template>
+
+        <template if:true={isStage4}>
+            <lightning-input label="Location" value={location}></lightning-input>
+            <lightning-input label="Space Adequacy" value={spaceAdequacy}></lightning-input>
+        </template>
+    </lightning-record-edit-form>
+
+    <div class="slds-m-top_medium">
+        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        <lightning-button label="Next" onclick={handleNext}></lightning-button>
+        <template if:true={isLastStage}>
+            <lightning-button label="Submit" onclick={handleSubmit}></lightning-button>
+        </template>
+    </div>
+</template>
