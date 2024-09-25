@@ -1,0 +1,38 @@
+handleNext() {
+    // Validate fields
+    this.errors = {}; // Reset errors
+
+    // Check if each field is filled, set errors accordingly
+    if (!this.customerName || !this.customerName.trim()) {
+        this.errors.customerName = 'Customer Name is required';
+    }
+    if (!this.phoneNumber || !this.phoneNumber.trim()) {
+        this.errors.phoneNumber = 'Phone Number is required';
+    }
+    if (!this.address || !this.address.trim()) {
+        this.errors.address = 'Address is required';
+    }
+    if (!this.email || !this.email.trim()) {
+        this.errors.email = 'Email is required';
+    }
+
+    // If there are any errors, return without advancing the stage
+    if (Object.keys(this.errors).length > 0) {
+        console.log('Validation errors: ', this.errors);
+        return;
+    }
+
+    // If no errors, advance the stage and dispatch the event
+    if (this.stage < 4) {
+        this.stage++;
+        this.dispatchStageChange();
+    }
+
+    // Log form data for the next stage
+    console.log('Moving to the next stage with data:', {
+        customerName: this.customerName,
+        phoneNumber: this.phoneNumber,
+        address: this.address,
+        email: this.email
+    });
+}
