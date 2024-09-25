@@ -1,1 +1,14 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adds space between fields */
+    padding: 1rem; /* Adds padding around the form */
+}
 
+.form-input {
+    width: 100%;
+}
+
+.next-button {
+    margin-top: 1rem; /* Adds space above the 'Next' button */
+}
