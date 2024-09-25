@@ -1,0 +1,31 @@
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="customerName">Customer Name</label>
+        <div class="slds-form-element__control">
+            <lightning-input id="customerName" class="slds-input" value={customerName} onchange={handleInputChange} data-id="customerName"></lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="phoneNumber">Phone Number</label>
+        <div class="slds-form-element__control">
+            <lightning-input id="phoneNumber" class="slds-input" value={phoneNumber} onchange={handleInputChange} data-id="phoneNumber"></lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="address">Address</label>
+        <div class="slds-form-element__control">
+            <lightning-input id="address" class="slds-input" value={address} onchange={handleInputChange} data-id="address"></lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="email">Email</label>
+        <div class="slds-form-element__control">
+            <lightning-input id="email" class="slds-input" value={email} onchange={handleInputChange} data-id="email"></lightning-input>
+        </div>
+    </div>
+
+    <lightning-button class="next-button" label="Next" onclick={handleNext}></lightning-button>
+</template>
