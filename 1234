@@ -1,5 +1,12 @@
 handlePhoneNumberValidation() {
     const phoneNumberInput = this.template.querySelector('input[id="phoneNumber"]');
+
+    // If the element is not found, exit the function
+    if (!phoneNumberInput) {
+        console.error('Phone number input field not found!');
+        return;
+    }
+
     const phoneNumberValue = phoneNumberInput.value;
 
     // Check if the number is exactly 10 digits
