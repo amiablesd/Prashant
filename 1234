@@ -1,0 +1,19 @@
+handlePhoneNumberValidation() {
+    const phoneNumberInput = this.template.querySelector('input[id="phoneNumber"]');
+    const phoneNumberValue = phoneNumberInput.value;
+
+    // Check if the number is exactly 10 digits
+    const isValidLength = phoneNumberValue.length === 10;
+
+    // Check if the number is positive
+    const isPositiveNumber = Number(phoneNumberValue) >= 0;
+
+    // If either condition is false, set the error message
+    if (!isValidLength || !isPositiveNumber) {
+        this.errors = {
+            phoneNumber: "Phone Number must be exactly 10 digits and cannot be negative"
+        };
+    } else {
+        this.errors = {};  // Clear errors if validation passes
+    }
+}
