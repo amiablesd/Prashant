@@ -1,0 +1,28 @@
+public with sharing class OnboardingService {
+
+    // Method to get picklist values for Location__c
+    public static List<String> getPicklistValues() {
+        // Ensure the object is accessible
+        Schema.SObjectType objectType = Schema.getGlobalDescribe().get('Onboarding__c');
+        Schema.DescribeSObjectResult objectDescribe = objectType.getDescribe();
+        Map<String, Schema.DescribeFieldResult> fieldDescribe = objectDescribe.fields.getMap();
+        
+        // Ensure the field exists
+        Schema.DescribeFieldResult fieldResult = fieldDescribe.get('Location__c');
+        if (fieldResult == null) {
+            throw new CustomException('Field Location__c does not exist on object Onboarding__c');
+        }
+        
+        // Fetch picklist values
+        List<Schema.PicklistEntry> picklistEntries = fieldResult.getPicklistValues();
+        List<String> picklistValues = new List<String>();
+        
+        for (Schema.PicklistEntry entry : picklistEntries) {
+            picklistValues.add(entry.getValue());
+        }
+        
+        return picklistValues;
+    }
+    
+    // Other service methods
+}
