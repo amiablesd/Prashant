@@ -1,0 +1,38 @@
+import { LightningElement, track } from 'lwc';
+import createOnboardingRecord from '@salesforce/apex/OnboardingController.createOnboardingRecord';
+
+export default class OnboardingForm extends LightningElement {
+    @track onboardingData = {
+        customerName: '',
+        phoneNumber: '',
+        email: '',
+        pan: '',
+        gst: '',
+        salesTurnover: 0,
+        grossProfit: 0,
+        netProfit: 0,
+        debt: 0,
+        location: '',
+        spaceAdequacy: ''
+    };
+
+    // This method is called when the Submit button is clicked
+    handleSubmit() {
+        // Call Apex method and pass the onboardingData (wrapper) to the backend
+        createOnboardingRecord({ onboardingData: this.onboardingData })
+            .then(result => {
+                // Handle success (e.g., show a success message or redirect)
+                console.log('Record Created:', result);
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error creating record:', error);
+            });
+    }
+
+    // Capture input change events and update the onboardingData (wrapper object)
+    handleInputChange(event) {
+        const fieldName = event.target.name;
+        this.onboardingData[fieldName] = event.target.value;
+    }
+}
