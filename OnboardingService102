@@ -1,0 +1,28 @@
+public with sharing class OnboardingService {
+    public static Id createOnboardingRecord(OnboardingWrapper onboardingData) {
+        // Create an instance of the Onboarding__c record
+        Onboarding__c newRecord = new Onboarding__c();
+        
+        // Map wrapper fields to custom object fields
+        newRecord.Customer_Name__c = onboardingData.customerName;
+        newRecord.Phone_Number__c = onboardingData.phoneNumber;
+        newRecord.Email__c = onboardingData.email;
+        newRecord.PAN__c = onboardingData.pan;
+        newRecord.GST__c = onboardingData.gst;
+        newRecord.Sales_Turnover__c = onboardingData.salesTurnover;
+        newRecord.Gross_Profit__c = onboardingData.grossProfit;
+        newRecord.Net_Profit__c = onboardingData.netProfit;
+        newRecord.Debt__c = onboardingData.debt;
+        newRecord.Location__c = onboardingData.location;
+        newRecord.Space_Adequacy__c = onboardingData.spaceAdequacy;
+
+        try {
+            // Insert the record and return the new record's Id
+            insert newRecord;
+            return newRecord.Id;
+        } catch (Exception e) {
+            // Handle exceptions gracefully
+            throw new AuraHandledException('Error creating Onboarding record: ' + e.getMessage());
+        }
+    }
+}
